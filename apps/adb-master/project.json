@@ -1,0 +1,56 @@
+{
+  "name": "adb-master",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/adb-master/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/adb-master",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/adb-master/src/main.ts",
+        "tsConfig": "apps/adb-master/tsconfig.app.json",
+        "assets": ["apps/adb-master/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "adb-master:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "adb-master:build:development"
+        },
+        "production": {
+          "buildTarget": "adb-master:build:production"
+        }
+      }
+    }
+  }
+}
