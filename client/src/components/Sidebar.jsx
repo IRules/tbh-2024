@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
 import { Link } from "react-router-dom";
-import {TooltipComponent} from "@syncfusion/ej2-react-popups";
+// import {TooltipComponent} from "@syncfusion/ej2-react-popups";
 
 
 const Sidebar = () => {
@@ -18,15 +18,12 @@ const Sidebar = () => {
                 <>
                 <div className="flex justify-between">
                     <Link to="/" onClick={() => {} } className="items-center gap-3 ml-3
-                    mt-4 flex test-xl font-extrabold tracking-tight
-                    dark:text-white text-slate-900">
+                    mt-4 flex text-2xl font-extrabold tracking-tight
+                    dark:text-black text-slate-900">
                        <span>TestWare</span>
                     </Link>
                 </div>
                     <div className="mt-10">
-                        <div className="text-blue-400 mt-4 uppercase hover:bg-gray-200 p-2">
-                            Analytics
-                        </div>
                         <div className="text-blue-400 mt-4 uppercase hover:bg-gray-200 p-2" >
                             Tests
                         </div>
