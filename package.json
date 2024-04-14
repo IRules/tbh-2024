@@ -7,7 +7,7 @@
   "dependencies": {
     "@yume-chan/adb-daemon-webusb": "^0.0.23",
     "axios": "^1.6.0",
-    "express": "~4.18.1",
+    "express": "~4.19.2",
     "surrealdb.node": "^0.3.0",
     "tslib": "^2.3.0",
     "usb": "^2.12.1"
