@@ -1,48 +1,52 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import {Routes, BrowserRouter, Route} from 'react-router-dom';
+// import {FiSettings} from 'react-icons/fi';
+import {TooltipComponent} from "@syncfusion/ej2-react-popups";
 
-export default function App() {
-  const [name, setName] = useState("");
-  const [response, setResponse] = useState("");
+import {Sidebar} from './components';
+import {Analytics, Tests} from './pages';
+import './App.css';
 
-  async function sayHello() {
-    setResponse("TODO: Not Implemented");
-  }
-
+function App() {
+  const activeMenu = true;
   return (
-    <>
       <div>
-        <a href="https://genezio.com" target="_blank">
-          <img
-            src="https://raw.githubusercontent.com/Genez-io/graphics/main/svg/Logo_Genezio_White.svg"
-            className="logo genezio light"
-            alt="Genezio Logo"
-          />
-          <img
-            src="https://raw.githubusercontent.com/Genez-io/graphics/main/svg/Logo_Genezio_Black.svg"
-            className="logo genezio dark"
-            alt="Genezio Logo"
-          />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <BrowserRouter>
+          <div className="flex relative dark:bg-main-dark-bg">
+            <div className="fixed right-4 bottom-4 style={{ zIndex: '1000' }}">
+              <TooltipComponent content="Settings">
+                <button type="button"
+                        className="text-3xl p-3
+                        hover:drop-shadow-xl hover:bg-light-grey text-white"
+                        style={{
+                          backgroundColor: 'pink',
+                          borderRadius: '50%'
+                        }}>
+                  {/*<FiSettings/>*/}
+                </button>
+              </TooltipComponent>
+            </div>
+            {activeMenu ? (
+                <div className="w-72 fixed sidebar
+                      dark:bg-secondary-dark-bg
+                      bg-white h-screen">
+                  <Sidebar/>
+                </div>
+            ) : (
+                <div className="w-0 dark:bg-secondary-dark-bg">
+                  <Sidebar/>
+                </div>
+            )}
+            <div>
+              <Routes>
+                <Route path="/" element={<Analytics/>}/>
+                <Route path="/analytics" element={<Analytics/>}/>
+                <Route path="/tests" element={<Tests/>}/>
+              </Routes>
+            </div>
+          </div>
+        </BrowserRouter>
       </div>
-      <h1>Genezio + React = ❤️</h1>
-      <div className="card">
-        <input
-          type="text"
-          className="input-box"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Enter your name"
-        />
-        <br />
-        <br />
-
-        <button onClick={() => sayHello()}>Say Hello</button>
-        <p className="read-the-docs">{response}</p>
-      </div>
-    </>
   );
 }
+
+export default App;
